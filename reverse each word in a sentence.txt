@@ -1,0 +1,19 @@
+public class ReverseEachWord {
+    public static void main(String[] args) {
+        String input = "Java Programming Language";
+        String output = reverseEachWord(input);
+        System.out.println(output); // Output: avaJ gnimmargorP egaugnaL
+    }
+
+    public static String reverseEachWord(String str) {
+        String[] words = str.split("\\s+");
+        StringBuilder result = new StringBuilder();
+
+        for (String word : words) {
+            StringBuilder reversedWord = new StringBuilder(word);
+            result.append(reversedWord.reverse()).append(" ");
+        }
+
+        return result.toString().trim();
+    }
+}

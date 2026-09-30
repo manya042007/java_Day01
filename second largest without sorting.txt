@@ -1,0 +1,37 @@
+public class SecondLargest {
+    public static int getSecondLargest(int[] arr) {
+        // Validation for empty or single-element arrays
+        if (arr == null || arr.length < 2) {
+            return -1; 
+        }
+
+        int largest = Integer.MIN_VALUE;
+        int secondLargest = Integer.MIN_VALUE;
+
+        for (int num : arr) {
+            // Case 1: Current number is strictly greater than the largest
+            if (num > largest) {
+                secondLargest = largest;
+                largest = num;
+            } 
+            // Case 2: Current number is between largest and second largest (ignoring duplicates)
+            else if (num > secondLargest && num != largest) {
+                secondLargest = num;
+            }
+        }
+
+        // If secondLargest was never updated, a distinct second largest does not exist
+        return (secondLargest == Integer.MIN_VALUE) ? -1 : secondLargest;
+    }
+
+    public static void main(String[] args) {
+        int[] numbers = {12, 35, 1, 10, 34, 35, 1};
+        int result = getSecondLargest(numbers);
+        
+        if (result != -1) {
+            System.out.println("The second largest element is: " + result);
+        } else {
+            System.out.println("No distinct second largest element exists.");
+        }
+    }
+}

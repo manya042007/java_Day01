@@ -1,0 +1,29 @@
+public class LongestWordFinder {
+    public static String findLongestWord(String sentence) {
+        if (sentence == null || sentence.trim().isEmpty()) {
+            return "";
+        }
+
+        // Split by one or more whitespace characters
+        String[] words = sentence.trim().split("\\s+");
+        String longestWord = "";
+
+        for (String word : words) {
+            // Remove punctuation from the word to get an accurate length comparison
+            String cleanWord = word.replaceAll("[^a-zA-Z]", "");
+            
+            if (cleanWord.length() > longestWord.length()) {
+                longestWord = cleanWord;
+            }
+        }
+
+        return longestWord;
+    }
+
+    public static void main(String[] args) {
+        String input = "Java is an exceptionally powerful programming language.";
+        String result = findLongestWord(input);
+        System.out.println("The longest word is: " + result); 
+        // Output: programming
+    }
+}
